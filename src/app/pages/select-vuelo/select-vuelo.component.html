@@ -27,7 +27,7 @@
                 <input type="text" matInput [formControl]="destinationControl" [matAutocomplete]="destination" formControlName="destination" required>
                 <mat-autocomplete #destination="matAutocomplete" [displayWith]="displayFnArrival">
                   <mat-option *ngFor="let arrival of destinationOrigin | async" [value]="arrival">
-                    {{arrival.departureStation}}
+                    {{arrival.arrivalStation}}
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
@@ -38,6 +38,7 @@
         </table>
 
         <div>
+          <button (click)="busquedaVuelo()">buscar</button>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
@@ -45,7 +46,22 @@
 
     <!-- menu donde visualiza los vuelos -->
 
-
+    <!-- <mat-step [stepControl]="secondFormGroup" label="Listado de Vuelos">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>LIstado de vuelos</mat-label>
+          <input
+            matInput
+            formControlName="secondCtrl"
+            placeholder="Ex. 1 Main St, New York, NY"
+            required />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step> -->
     <!-- menu donde compra los vuelos-->
 
     <mat-step>

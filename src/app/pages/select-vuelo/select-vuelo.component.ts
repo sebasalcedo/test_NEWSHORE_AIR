@@ -21,7 +21,7 @@ export class SelectVueloComponent implements OnInit{
   destinationControl = new FormControl<string | Vuelo0>('');
 
   listVuelos: Vuelo0[] = [];
-  listVuelos2: Vuelo0[] = [];
+
 
 
   filterOrigin?      : Observable<Vuelo0[]>;
@@ -32,9 +32,6 @@ export class SelectVueloComponent implements OnInit{
     origin: ['', Validators.required],
     destination: ['', Validators.required],
 
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
   });
 
 
@@ -94,9 +91,12 @@ export class SelectVueloComponent implements OnInit{
 
   consulting(){
     this.dataService.getsearchVuelo()
+    // this.listVuelos = JSON.parse(localStorage.getItem('result') || ' ');
+  }
 
-    this.listVuelos = JSON.parse(localStorage.getItem('result') || ' ');
-    this.listVuelos2 =JSON.parse(localStorage.getItem('result') || ' ');
+
+  busquedaVuelo(){
+        console.log(this.originControl || ' ');
   }
 
 
