@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+import { Vuelo0 } from './../interfaces/vuelo_o';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,21 @@ export class ConsultingService {
   constructor(private _http: HttpClient) { }
 
 
+getsearchVuelo(){
+  this._http
+  .get<Vuelo0>(
+    `https://recruiting-api.newshore.es/api/flights/${0}`
+  )
+  .subscribe(
+    (res) => {
 
-  getData(): Observable<any> {
-    let headers = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded')
+      localStorage.setItem('result', JSON.stringify(res));
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
+}
 
 
-    return this._http.get(`https://recruiting-api.newshore.es/api/flights/${0}`, { headers: headers });
-  }
 }

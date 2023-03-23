@@ -1,38 +1,52 @@
 <div class="formVuelo">
-   <!-- menu donde Selecciona los vuelos -->
+  <!-- menu donde Selecciona los vuelos -->
 
   <mat-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Selecciona tu vuelo</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
+
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Origin</mat-label>
+                <input type="text" matInput [formControl]="originControl" [matAutocomplete]="auto" formControlName="origin" required>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFndeparture">
+                  <mat-option *ngFor="let option of filterOrigin | async" [value]="option">
+                    {{option.departureStation}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </td>
+
+
+            <td>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Destination</mat-label>
+                <input type="text" matInput [formControl]="destinationControl" [matAutocomplete]="destination" formControlName="destination" required>
+                <mat-autocomplete #destination="matAutocomplete" [displayWith]="displayFnArrival">
+                  <mat-option *ngFor="let arrival of destinationOrigin | async" [value]="arrival">
+                    {{arrival.departureStation}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </td>
+
+
+          </tr>
+        </table>
+
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
 
-   <!-- menu donde visualiza los vuelos -->
+    <!-- menu donde visualiza los vuelos -->
 
 
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>LIstado de vuelos</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-   <!-- menu donde compra los vuelos-->
-
+    <!-- menu donde compra los vuelos-->
 
     <mat-step>
       <ng-template matStepLabel>Compra tu vuelo</ng-template>
@@ -43,5 +57,4 @@
       </div>
     </mat-step>
   </mat-stepper>
-
 </div>
