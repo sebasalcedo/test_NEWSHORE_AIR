@@ -17,15 +17,15 @@ export interface User {
 export class SelectVueloComponent implements OnInit{
 
 
-  originControl      = new FormControl<string | Vuelo0>('');
-  destinationControl = new FormControl<string | Vuelo0>('');
+  originControl      = new FormControl<string | any>('');
+  destinationControl = new FormControl<string | any>('');
 
-  listVuelos: Vuelo0[] = [];
+  listVuelos:any[] = [];
 
 
 
-  filterOrigin?      : Observable<Vuelo0[]>;
-  destinationOrigin? : Observable<Vuelo0[]>;
+  filterOrigin?      : Observable<any[]>;
+  destinationOrigin? : Observable<any[]>;
 
 
   firstFormGroup = this._formBuilder.group({
@@ -48,55 +48,44 @@ export class SelectVueloComponent implements OnInit{
 
     this.filterOrigin = this.originControl.valueChanges.pipe(
       startWith(''),
-      map(value => {
-        const departureStation = typeof value === 'string' ? value : value?.departureStation;
-        return departureStation ? this._filterdeparture(departureStation as string) : this.listVuelos.slice();
-      }),
+      map(value => this._filterOrigin(value || '')),
     );
-
 
     this.destinationOrigin = this.destinationControl.valueChanges.pipe(
       startWith(''),
-      map( value => {
-        const arrivalStation = typeof value === 'string' ? value: value?.arrivalStation;
-        return arrivalStation ? this._filterArrival( arrivalStation as string) :this.listVuelos.slice();
-      })
-    )
-  }
-
-  displayFndeparture(departure: Vuelo0): string {
-    return departure && departure.departureStation ? departure.departureStation : '';
-  }
-
-
-  displayFnArrival(arrival: Vuelo0): string {
-    return arrival && arrival.arrivalStation ? arrival.arrivalStation : '';
-  }
-
-
-
-  private _filterdeparture(departure: string): Vuelo0[] {
-    const filterValue = departure.toLowerCase();
-
-    return this.listVuelos.filter(option => option.departureStation.toLowerCase().includes(filterValue));
+      map(value => this._destinationOrigin(value || '')),
+    );
 
   }
+  private _filterOrigin(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-
-  private _filterArrival( arrival: string ):Vuelo0[]{
-    const filterValue = arrival.toLowerCase();
-
-    return this.listVuelos.filter( option => option.arrivalStation.toLowerCase().includes(filterValue))
+    return this.listVuelos.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+  private _destinationOrigin(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.listVuelos.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
 
   consulting(){
-    this.dataService.getsearchVuelo()
-    // this.listVuelos = JSON.parse(localStorage.getItem('result') || ' ');
+    this.dataService.getCitys()
+    this.listVuelos = JSON.parse(localStorage.getItem('result') || ' ');
   }
 
 
   busquedaVuelo(){
-        console.log(this.originControl || ' ');
+
+         const origin = this.originControl.value;
+         const destination = this.destinationControl.value;
+
+        const una = this.dataService.getFilter(origin, destination)
+      console.log( 'una',una);
+
+
+
   }
 
 
