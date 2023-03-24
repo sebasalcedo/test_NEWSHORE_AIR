@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from './../material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CardComponent } from './card/card.component';
+import { InputComponent } from './input/input.component';
+import { SelectComponent } from './select/select.component';
 import { CarruselComponent } from './carrusel/carrusel.component';
 
-const componentExports= [ CarruselComponent]
+
+const componentExports= [ CarruselComponent,SelectComponent, InputComponent,CardComponent]
 @NgModule({
   declarations: [
-    componentExports
-  ],
+    componentExports,
+
+
+      ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     componentExports

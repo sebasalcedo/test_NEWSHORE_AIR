@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -27,20 +28,27 @@ export class ConsultingService {
       );
   }
 
+
+  getVuelosFilter(): Observable<any>{
+   return this._http
+    .get<Vuelo0>(`https://recruiting-api.newshore.es/api/flights/${2}`)
+  }
+
+
   getFilter(origin: string, destination: string) {
-    console.log(origin, destination);
+    let data;
     this._http
       .get<Vuelo0>(`https://recruiting-api.newshore.es/api/flights/${2}`)
       .subscribe(
         (res: Vuelo0) => {
-          const data = Object.values(res);
-          const DataTransfer = data.filter(
-            vuelo =>
-              vuelo.departureStation == origin &&
-              vuelo.arrivalStation == destination
+           data = Object.values(res)
+                            .filter(
+                                    vuelo =>
+                                      vuelo.departureStation == origin &&
+                                      vuelo.arrivalStation == destination
           );
-          console.log(DataTransfer);
-          return DataTransfer;
+          return data;
+
         },
         err => {
           console.log(err);

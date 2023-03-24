@@ -1,0 +1,70 @@
+<br />
+
+<div>
+  <button
+    mat-fab
+    color="primary"
+    class="btn-arrow"
+    aria-label="Example icon button with a delete icon"
+    (click)="volver()">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+</div>
+
+<br />
+
+<div class="container">
+  <ng-container *ngFor="let item of listadoVuelos">
+    <mat-card class="card_hover">
+      <mat-card-header class="card_header">
+        <div class="origin_destination">
+          <div class="div1">
+            <div class="origin">
+              <strong>{{ item.departureStation }}</strong>
+              <br />
+              <img src="../../../assets/img/departure.png" alt="" width="10%" />
+            </div>
+          </div>
+
+          <div class="div2">
+            <strong>Airline: </strong> AV
+            <br />
+            <Strong>Number: </Strong> {{ item.flightNumber }}
+            <br />
+            <Strong>Price: </Strong>
+            <div *ngIf="item.moneda === ' '">
+              <Strong>Price: </Strong> {{ item.price | currency }} USD
+            </div>
+
+            <div *ngIf="item.moneda === '4773'">
+              {{ item.price * 4773 | currency }} COD
+            </div>
+
+            <div *ngIf="item.moneda === '18.55'">
+              {{ item.price * 18.55 | currency }} MXN
+            </div>
+          </div>
+
+          <div class="div6">
+            <div class="destination">
+              <strong>{{ item.arrivalStation }}</strong>
+              <br />
+              <img
+                src="../../../assets/img/destination.png"
+                alt=""
+                width="10%" />
+            </div>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="openSnackBar('has seleccionado este vuelo', 'Cerrar')">
+          Selecionar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>

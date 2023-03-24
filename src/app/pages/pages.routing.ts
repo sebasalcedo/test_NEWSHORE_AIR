@@ -1,5 +1,5 @@
+import { ViewVuelosComponent } from './view-vuelos/view-vuelos.component';
 import { SelectVueloComponent } from './select-vuelo/select-vuelo.component';
-import { IndexComponent } from './index/index.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
@@ -13,8 +13,9 @@ const routes: Routes = [
     path: 'bienvenida',
     component: PagesComponent,
     children:[
-      { path: 'index', component: IndexComponent },
-      { path: 'vuelos', component:SelectVueloComponent}
+
+      { path: 'vuelos', component:SelectVueloComponent},
+      { path: 'listVuelos', component:ViewVuelosComponent, data: {animation: 'vuelos'} }
 
     ]
 

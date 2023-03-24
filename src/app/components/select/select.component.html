@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline">
+  <mat-label>Seleciona la moneda</mat-label>
+  <mat-select [(ngModel)]="selectedValue" name="moneda">
+    <mat-option *ngFor="let item of seleccion" [value]="item.value">
+      {{ item.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

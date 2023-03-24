@@ -1,10 +1,53 @@
-.formVuelo{
-width: 100%;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.contenedor {
+  width: 100%;
+  height: auto;
+  display: flex;
 }
-.input-text{
-  text-transform: capitalize;
+
+.imagen {
+  flex-basis: 50%;
+  align-items: center;
+}
+
+.imagen img {
+  width: 100%;
+
+  padding-top: 130px;
+}
+
+.formulario {
+  flex-basis: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario div {
+
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.title-form{
+  text-align: center;
+}
+
+.title-form p {
+  font-size: 30px;
+}
+
+
+
+.btn-buscar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .imagen,
+  .formulario {
+    flex-basis: 100%;
+  }
 }

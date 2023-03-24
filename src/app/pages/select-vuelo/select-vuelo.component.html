@@ -1,44 +1,47 @@
-<div class="formVuelo">
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Number</mat-label>
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="originControl"
-                 [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filterOrigin | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </td>
+<div class="contenedor" @enterState>
+  <div class="imagen">
+    <img src="../../../assets/img/fondo2.jpg" alt="" />
+  </div>
+  <div class="formulario">
+    <div class="table-form">
+      <div class="title-form">
+        <p>Busca tu nuevo destino!!!!</p>
+      </div>
+      <hr />
+      <table cellspacing="0">
+        <tr>
+          <td>
+            <app-input
+              [listadoVuelos]="listVuelos"
+              [iconInput]="origin"
+              #eventInputOrigin
 
+              (cityEvent)="receiveMessage($event)"></app-input>
+          </td>
 
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Number</mat-label>
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="destinationControl"
-                 [matAutocomplete]="destination">
-          <mat-autocomplete autoActiveFirstOption #destination="matAutocomplete">
-            <mat-option *ngFor="let option of destinationOrigin | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </td>
+          <td>
+            <app-input
+              [listadoVuelos]="listVuelos"
+              [iconInput]="destination"
+              #eventInputDestination
+              (cityEventDestination)="receiveMessage2($event)"></app-input>
+          </td>
+        </tr>
+        <tr>
 
+          <td rowspan="2">
+            <div style="width: 100%">
+              <app-select #select (monedaEvent)="receiveSelect($event)"></app-select>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-    </tr>
-  </table>
-
-  <button (click)="busquedaVuelo()">buscar</button>
+      <div class="btn-buscar">
+        <button mat-stroked-button color="primary" (click)="eventInputOrigin.sendMessage(); eventInputDestination.sendMessageEvent(); select.sendMessage();searchVuelo()">Buscar</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+

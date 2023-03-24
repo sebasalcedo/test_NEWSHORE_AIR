@@ -1,0 +1,63 @@
+.container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-arrow{
+  margin-left: 50px;
+  left: inherit;
+}
+
+.form{
+  width: 100%;
+}
+.card_hover:hover{
+  color: #3f51b5;
+}
+
+.card_header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.origin_destination{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+hr{
+  height: 2px;
+  width: 100%;
+  background-color: black;
+}
+.description_vuelo{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+}
+.descripion{
+  text-align: justify;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+
+  .div1 { grid-area: 1 / 1 / 2 / 2; }
+  .div2 { grid-area: 1 / 2 / 2 / 3; }
+  .div3 { grid-area: 1 / 3 / 2 / 4; }
+  .div4 { grid-area: 2 / 1 / 3 / 2; }
+  .div5 { grid-area: 2 / 2 / 3 / 3; }
+  .div6 { grid-area: 2 / 3 / 3 / 4; }

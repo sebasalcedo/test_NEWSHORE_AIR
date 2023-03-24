@@ -1,0 +1,20 @@
+<mat-form-field appearance="outline">
+  <mat-label>Elige la ciudad </mat-label>
+
+  <input
+    type="text"
+    placeholder="Digita la ciudad"
+    aria-label="Destino"
+    matInput
+    [formControl]="filterControl"
+    [(ngModel)]="value"
+    [matAutocomplete]="auto" />
+  <mat-icon matSuffix>{{iconInput}}</mat-icon>
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filterOrigin | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+

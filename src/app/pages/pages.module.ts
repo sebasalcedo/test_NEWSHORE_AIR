@@ -6,14 +6,14 @@ import { CommonModule } from '@angular/common';
 
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages.routing';
-import { IndexComponent } from './index/index.component';
 import { SelectVueloComponent } from './select-vuelo/select-vuelo.component';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
+import { ViewVuelosComponent } from './view-vuelos/view-vuelos.component';
 
 
 
 @NgModule({
-  declarations: [ PagesComponent, IndexComponent, SelectVueloComponent ],
+  declarations: [ PagesComponent,  SelectVueloComponent, ViewVuelosComponent ],
   imports: [
     CommonModule,
     PagesRoutingModule,
