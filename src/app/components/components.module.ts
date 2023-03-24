@@ -6,10 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { InputComponent } from './input/input.component';
 import { SelectComponent } from './select/select.component';
-import { CarruselComponent } from './carrusel/carrusel.component';
 
 
-const componentExports= [ CarruselComponent,SelectComponent, InputComponent,CardComponent]
+const componentExports= [ SelectComponent, InputComponent,CardComponent]
 @NgModule({
   declarations: [
     componentExports,
